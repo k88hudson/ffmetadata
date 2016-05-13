@@ -1,0 +1,34 @@
+{
+  "title": "ffmetadata",
+  "name": "ffmetadata",
+  "version": "0.0.1",
+  "description": "A basic add-on",
+  "main": "index.js",
+  "author": "",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "webpack -w && cpx src/content-script.js data/content-script.js -w",
+    "addon": "jpm run"
+  },
+  "devDependencies": {
+    "jpm": "^1.0.7",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.13.0",
+    "webpack-notifier": "^1.3.0"
+  },
+  "dependencies": {
+    "jsdom": "^9.0.0",
+    "url": "^0.11.0",
+    "url-parse": "^1.1.1"
+  }
+}
