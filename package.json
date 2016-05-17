@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "webpack && cpx src/content-script.js data",
-    "start": "webpack -w && cpx src/content-script.js data -w",
+    "start": "webpack -w & cpx src/content-script.js data -w",
     "addon": "npm run build && jpm run"
   },
   "devDependencies": {
