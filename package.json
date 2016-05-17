@@ -17,6 +17,7 @@
     "test": "test"
   },
   "scripts": {
+    "build": "webpack",
     "start": "webpack -w && cpx src/content-script.js data/content-script.js -w",
     "addon": "jpm run"
   },
