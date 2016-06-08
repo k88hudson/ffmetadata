@@ -13,30 +13,32 @@ class AddonPlugin extends BannerPlugin {
   }
 }
 
-const SRC_PATH = absolute("src/main.js");
-const CONTENT_SCRIPT_SRC_PATH = absolute("src/content-script");
-const OUTPUT_FILE = "/lib/main";
-const CONTENT_SCRIPT_FILE = "/data/content-script";
-
-
 let env = process.env.NODE_ENV || "development";
 
-const entry = {};
-entry[OUTPUT_FILE] = SRC_PATH;
-entry[CONTENT_SCRIPT_FILE] = CONTENT_SCRIPT_SRC_PATH;
-
 module.exports = {
-  entry,
+  entry: {
+    "/lib/main": "./src/main.js",
+    "/data/content-script": "./src/content-script.js",
+    "/data/main-sidebar": "./src/main-sidebar.js"
+  },
   output: {
     path: __dirname,
     filename: "[name].js",
   },
   module: {
-    loaders: [{test: /\.json$/, loader: "json"}]
+    loaders: [
+      {test: /\.json$/, loader: "json"},
+      {
+        test: /.js?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {presets: ['react']}
+     }
+    ]
   },
   // devtool: env === "production" ? null : "eval", // This is for Firefox
   plugins: [
     new WebpackNotifierPlugin(),
-    new AddonPlugin(OUTPUT_FILE)
+    new AddonPlugin("/lib/main")
   ]
 };
