@@ -30,16 +30,22 @@ const Main = React.createClass({
         {metadata.title}
       </FormGroup>
       <FormGroup>
+        <label>Type</label>
+        {metadata.type}
+      </FormGroup>
+      <FormGroup>
         <label>Description</label>
         {metadata.description}
       </FormGroup>
       <FormGroup>
         <label>Favicon</label>
-        <img src={metadata.favicon} />
+        <em>{metadata.icon_url}</em>
+        <img src={metadata.icon_url} />
       </FormGroup>
       <FormGroup>
-        <label>Images</label>
-        {metadata.images && metadata.images.map(image => <img src={image} />)}
+        <label>Image</label>
+        <em>{metadata.image_url}</em>
+        <img src={metadata.image_url} />
       </FormGroup>
     </div>);
   }
