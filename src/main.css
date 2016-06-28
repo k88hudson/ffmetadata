@@ -1,0 +1,22 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+}
+
+h2 {
+  font-size: inherit;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
