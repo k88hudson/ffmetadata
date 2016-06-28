@@ -24,6 +24,7 @@ const Main = React.createClass({
   render() {
     const {metadata} = this.state;
     return (<div>
+      <h2>{metadata.url}</h2>
       <FormGroup>
         <label>Title</label>
         {metadata.title}
@@ -31,6 +32,10 @@ const Main = React.createClass({
       <FormGroup>
         <label>Description</label>
         {metadata.description}
+      </FormGroup>
+      <FormGroup>
+        <label>Favicon</label>
+        <img src={metadata.favicon} />
       </FormGroup>
       <FormGroup>
         <label>Images</label>
@@ -41,21 +46,3 @@ const Main = React.createClass({
 });
 
 ReactDOM.render(<Main />, document.getElementById("content"));
-
-console.log("render");
-
-//
-//
-// function render(data) {
-//   if (!data) return "";
-//   return `
-// <p><label>title</label> ${data.title}</p>
-// <p><label>icon</label> <img src="${data.icon}" />
-// <p><label>favicon</label> <img src="${data.favicon}" />
-// <p><label>description</label> ${data.description}</p>
-// <p><label>image</label> <img src="${data.image}" /></p>
-// ${data.images.map(img => {
-//   return `<p><img src="${img}" /></p>`
-// }).join("\n")}
-//   `;
-// }

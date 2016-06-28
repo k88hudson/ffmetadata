@@ -18,8 +18,12 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack -w",
-    "addon": "cp src/sidebar.html data/sidebar.html && npm run build && jpm run"
+    "start:js": "webpack -w",
+    "start:css": "cpx src/main.css data -w",
+    "start:html": "cpx src/sidebar.html data -w",
+    "start:server": "live-server data --port=1963 --no-browser",
+    "start": "npm-run-all --parallel start:*",
+    "addon": "npm run build && jpm run"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
@@ -30,6 +34,7 @@
     "json-loader": "^0.5.4",
     "karma": "^0.13.22",
     "mocha": "^2.4.5",
+    "npm-run-all": "^2.3.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "webpack": "^1.13.0",

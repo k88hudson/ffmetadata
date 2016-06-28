@@ -58,7 +58,7 @@ function protocolRelativeToHttps(url) {
 
 module.exports = function (data) {
   const htmlDoc = getDocumentObject(data);
-  return Object.keys(selectors).map(key => {
+  const result = Object.keys(selectors).map(key => {
     const rules = selectors[key];
     let result;
     if (rules.oneOf) {
@@ -92,4 +92,6 @@ module.exports = function (data) {
   .reduce((prev, current) => {
     return Object.assign(prev, current);
   }, {});
+  result.url = data.documentURI;
+  return result;
 };
