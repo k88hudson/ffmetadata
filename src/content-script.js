@@ -1,6 +1,6 @@
 const {CONTENT_TO_ADDON_EVENT, ADDON_TO_CONTENT_EVENT} = require("./constants");
-
 function sendData() {
+  if (!document.hasFocus()) return;
   const data = {
     baseURI: document.baseURI,
     documentURI: document.documentURI,
@@ -10,6 +10,7 @@ function sendData() {
   window.removeEventListener("load", sendData);
 }
 
+sendData();
 if (document.readyState === "complete") {
   sendData();
 } else {
