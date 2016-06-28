@@ -15,8 +15,8 @@ pageMod.PageMod({
   onAttach(worker) {
     worker.port.on(CONTENT_TO_ADDON_EVENT, action => {
       switch (action.type) {
-        case "PAGE_HIDE":
-          console.log("page hide");
+        case "DATA_CLEAR":
+          sidebarWorker.port.emit(CONTENT_TO_ADDON_EVENT, {});
           break;
         case "DATA_RESPONSE":
           const metadata = getMetadata(action.data);

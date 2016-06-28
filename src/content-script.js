@@ -22,7 +22,11 @@ self.port.on(ADDON_TO_CONTENT_EVENT, data => {
   }
 });
 
+// Send a message when the page unloads
 window.addEventListener("pagehide", function() {
-  sendData();
-  self.port.emit(CONTENT_TO_ADDON_EVENT, {type: "PAGE_HIDE"});
+  self.port.emit(CONTENT_TO_ADDON_EVENT, {type: "DATA_CLEAR"});
 }, false);
+
+window.addEventListener("focus", function() {
+  sendData();
+});
