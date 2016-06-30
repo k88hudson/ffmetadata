@@ -21,7 +21,7 @@
     "start:js": "webpack -w",
     "start:css": "cpx src/main.css data -w",
     "start:html": "cpx src/sidebar.html data -w",
-    "start:server": "live-server data --port=1963 --no-browser",
+    "start:server": "live-server data --port=1936 --no-browser",
     "start": "npm-run-all --parallel start:*",
     "addon": "npm run build && jpm run"
   },
