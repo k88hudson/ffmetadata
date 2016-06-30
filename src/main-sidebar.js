@@ -17,8 +17,19 @@ const Main = React.createClass({
     };
   },
   componentDidMount() {
-    addon.port.on(CONTENT_TO_ADDON_EVENT, data => {
-      this.setState({metadata: data});
+    // addon.port.on(CONTENT_TO_ADDON_EVENT, data => {
+    //   this.setState({metadata: data});
+    // });
+    function receive(event) {
+      console.log(event);
+      if (event.type === CONTENT_TO_ADDON_EVENT) {
+        this.replaceState({metadata: event.data});
+      }
+    }
+    window.addEventListener("message", function(event) {
+      console.log(event);
+      window.port = event.ports[0];
+      window.port.onmessage = receive;
     });
   },
   render() {
