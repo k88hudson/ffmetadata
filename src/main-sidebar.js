@@ -4,8 +4,11 @@ const ReactDOM = require("react-dom");
 
 const FormGroup = React.createClass({
   render() {
-    return (<div className="form-group">
-        {this.props.children}
+    const hasValue = this.props.value !== null && typeof this.props.value !== "undefined";
+    return (<div className={"form-group" + (hasValue ? "" : " empty")}>
+      <label>{this.props.label}</label>
+      {this.props.image && this.props.value && <img width={this.props.image} src={this.props.value} />}
+      {hasValue ? this.props.value : "(Not found)"}
     </div>);
   }
 });
@@ -30,33 +33,19 @@ const Main = React.createClass({
   },
   render() {
     const {metadata} = this.state;
-    return (<div>
-      <FormGroup>
-        <label>URL</label>
-        {metadata.url}
-      </FormGroup>
-      <FormGroup>
-        <label>Title</label>
-        {metadata.title}
-      </FormGroup>
-      <FormGroup>
-        <label>Type</label>
-        {metadata.type}
-      </FormGroup>
-      <FormGroup>
-        <label>Description</label>
-        {metadata.description}
-      </FormGroup>
-      <FormGroup>
-        <label>Favicon</label>
-        <em>{metadata.icon_url}</em>
-        <img src={metadata.icon_url || ""} />
-      </FormGroup>
-      <FormGroup>
-        <label>Image</label>
-        <em>{metadata.image_url}</em>
-        <img src={metadata.image_url || ""} />
-      </FormGroup>
+    return (<div className="container">
+      <div className="column">
+        <FormGroup label="URL" value={metadata.url} />
+        <FormGroup label="Title" value={metadata.title} />
+        <FormGroup label="Description" value={metadata.description} />
+        <FormGroup label="Type" value={metadata.type} />
+      </div>
+      <div className="column">
+        <FormGroup label="Favicon" value={metadata.icon_url} image={60} />
+      </div>
+      <div className="column">
+        <FormGroup label="Image" value={metadata.image_url} image />
+      </div>
     </div>);
   }
 });

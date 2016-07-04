@@ -1,22 +1,61 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
+  margin: 0;
+  padding: 0;
 }
 
-h2 {
-  font-size: inherit;
+[hidden] {
+  display: none !important;
 }
 
 label {
   font-weight: bold;
   display: block;
+  margin-bottom: 5px;
 }
 
 img {
   display: block;
   max-width: 200px;
+  border: 1px solid #CCC;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 700px) {
+  .container {
+    display: flex;
+  }
+  .column {
+    border-right: 1px solid #DDD;
+    min-height: 100vh;
+  }
+  .column:first-child {
+    flex-grow: 1;
+  }
+  .column:last-child {
+    border-right: 0;
+  }
 }
 
 .form-group {
-  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #DDD;
+  flex-direction: row;
+}
+.form-group:last-child {
+  border-bottom: 0;
+}
+.form-group.empty {
+  color: #CCC;
 }
