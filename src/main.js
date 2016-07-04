@@ -63,6 +63,7 @@ const MetadataDebugger = Class({
     const addonSide = channel.port1;
     const panelSide = channel.port2;
     let worker;
+    let tab;
 
     function onContentScriptMessage(action) {
       if (action.type === "PAGE_TEXT") {
@@ -72,11 +73,12 @@ const MetadataDebugger = Class({
     }
 
     function setWorker() {
-      worker = tabs.activeTab.attach({
+      tab = tabs.activeTab;
+      worker = tab.attach({
         contentScriptFile: "content-script.js",
       });
       worker.port.on("message", onContentScriptMessage);
-      tabs.activeTab.on("ready", setWorker);
+      tab.on("ready", setWorker);
     }
 
     setWorker();
