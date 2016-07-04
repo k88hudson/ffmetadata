@@ -17,17 +17,13 @@ const Main = React.createClass({
     };
   },
   componentDidMount() {
-    // addon.port.on(CONTENT_TO_ADDON_EVENT, data => {
-    //   this.setState({metadata: data});
-    // });
-    function receive(event) {
-      console.log(event);
-      if (event.type === CONTENT_TO_ADDON_EVENT) {
-        this.replaceState({metadata: event.data});
-      }
-    }
+    const receive = event => {
+      console.log("panel received event");
+      this.setState({metadata: {}});
+      this.setState({metadata: event.data});
+    };
     window.addEventListener("message", function(event) {
-      console.log(event);
+      console.log("received port event");
       window.port = event.ports[0];
       window.port.onmessage = receive;
     });
@@ -51,12 +47,12 @@ const Main = React.createClass({
       <FormGroup>
         <label>Favicon</label>
         <em>{metadata.icon_url}</em>
-        <img src={metadata.icon_url} />
+        <img src={metadata.icon_url || ""} />
       </FormGroup>
       <FormGroup>
         <label>Image</label>
         <em>{metadata.image_url}</em>
-        <img src={metadata.image_url} />
+        <img src={metadata.image_url || ""} />
       </FormGroup>
     </div>);
   }
