@@ -17,12 +17,13 @@
     "test": "test"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && cpx src/static/**/* data && node bin/replace-html",
     "start:js": "webpack -w",
     "start:static": "cpx src/static/**/* data -w",
     "start:server": "live-server data --port=1936 --no-browser",
     "start": "npm-run-all --parallel start:*",
-    "addon": "npm run build && jpm run"
+    "addon": "npm run build && jpm run",
+    "package": "npm run build && jpm xpi"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
