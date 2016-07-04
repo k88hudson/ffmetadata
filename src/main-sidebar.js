@@ -31,7 +31,10 @@ const Main = React.createClass({
   render() {
     const {metadata} = this.state;
     return (<div>
-      <h2>{metadata.url}</h2>
+      <FormGroup>
+        <label>URL</label>
+        {metadata.url}
+      </FormGroup>
       <FormGroup>
         <label>Title</label>
         {metadata.title}
