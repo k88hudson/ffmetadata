@@ -8,3 +8,5 @@ First, `npm install`. Then you must run two commands in separate processes:
 
 - `npm start`, which runs all the watch/build processes for js, css, and dev server,
 - `npm run addon`, which runs the addon
+
+**You will need to open Firefox devtools and look for the "Metadata" panel**
