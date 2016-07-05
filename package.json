@@ -23,7 +23,7 @@
     "start:server": "live-server data --port=1936 --no-browser",
     "start": "npm-run-all --parallel start:*",
     "addon": "npm run build && jpm run",
-    "package": "npm run build && jpm xpi"
+    "publish": "npm run build && jpm sign --api-key ${AMO_API_KEY} --api-secret ${AMO_API_SECRET}"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
