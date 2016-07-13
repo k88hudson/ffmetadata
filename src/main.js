@@ -27,7 +27,7 @@ const MetadataDebugger = Class({
     const channel = new MessageChannel();
     const addonSide = channel.port1;
     const panelSide = channel.port2;
-    let worker;
+    let tabWorker;
     let tab;
 
     function onContentScriptMessage(action) {
@@ -37,15 +37,20 @@ const MetadataDebugger = Class({
       }
     }
 
+    function onPanelMessage(e) {
+      console.log(e);
+    }
+
     function setWorker() {
       tab = tabs.activeTab;
-      worker = tab.attach({contentScriptFile: "content-script.js"});
-      worker.port.on("message", onContentScriptMessage);
+      tabWorker = tab.attach({contentScriptFile: "content-script.js"});
+      tabWorker.port.on("message", onContentScriptMessage);
       tab.on("ready", setWorker);
     }
 
     setWorker();
-    addonSide.onmessage = e => worker.port.emit("message", e.data);
+    addonSide.onmessage = e => tabWorker.port.emit("message", e.data);
+    panelSide.onmessage = onPanelMessage;
     this.postMessage("port", [panelSide]);
     this.unload = () => {
       tab.off("ready", setWorker);

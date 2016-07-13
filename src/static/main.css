@@ -46,6 +46,12 @@ img {
   .column:last-child {
     border-right: 0;
   }
+  .form-group:last-child {
+    border-bottom: 0;
+  }
+  .metatags {
+    border-top: 1px solid #DDD;
+  }
 }
 
 .form-group {
@@ -53,9 +59,15 @@ img {
   border-bottom: 1px solid #DDD;
   flex-direction: row;
 }
-.form-group:last-child {
-  border-bottom: 0;
-}
 .form-group.empty {
   color: #CCC;
+}
+
+pre {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.metatags {
+  padding: 10px;
 }

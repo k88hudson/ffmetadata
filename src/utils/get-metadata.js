@@ -1,6 +1,12 @@
 const {Cc, Ci} = platform_require("chrome");
-const {getMetadata} = require("page-metadata-parser");
+const MetadataParser = require("page-metadata-parser");
 const {resolve} = require("url");
+
+const parser = new MetadataParser({
+  site_name: [
+    ['meta[property="og:site_name"]', node => node.element.content],
+  ]
+});
 
 function getDocumentObject(data) {
   const parser = Cc["@mozilla.org/xmlextras/domparser;1"]
@@ -23,6 +29,12 @@ function tempFixUrls(data, baseUrl) {
 
 module.exports = function (data) {
   const htmlDoc = getDocumentObject(data);
-  const result = tempFixUrls(getMetadata(htmlDoc), data.documentURI);
+  const result = tempFixUrls(parser.getMetadata(htmlDoc), data.documentURI);
+  result.metaTags = Array.map.call(null, htmlDoc.querySelectorAll("meta"), item => {
+    const attributes = {};
+    Array.forEach.call(null, item.attributes, attr => attributes[attr.nodeName] = attr.nodeValue);
+    return attributes;
+  });
+  console.log(result.metaTags);
   return result;
 };

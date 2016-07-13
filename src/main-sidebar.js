@@ -31,20 +31,32 @@ const Main = React.createClass({
       window.port.onmessage = receive;
     });
   },
+  onClick() {
+    window.port.postMessage("REFRESH");
+  },
   render() {
     const {metadata} = this.state;
-    return (<div className="container">
-      <div className="column">
-        <FormGroup label="URL" value={metadata.url} />
-        <FormGroup label="Title" value={metadata.title} />
-        <FormGroup label="Description" value={metadata.description} />
-        <FormGroup label="Type" value={metadata.type} />
+    return (<div>
+      <div className="container">
+        <div className="column">
+          <FormGroup label="URL" value={metadata.url} />
+          <FormGroup label="Title" value={metadata.title} />
+          <FormGroup label="Description" value={metadata.description} />
+          <FormGroup label="Type" value={metadata.type} />
+          <FormGroup label="Site Name" value={metadata.site_name} />
+        </div>
+        <div className="column">
+          <FormGroup label="Favicon" value={metadata.icon_url} image={60} />
+        </div>
+        <div className="column">
+          <FormGroup label="Image" value={metadata.image_url} image />
+        </div>
       </div>
-      <div className="column">
-        <FormGroup label="Favicon" value={metadata.icon_url} image={60} />
-      </div>
-      <div className="column">
-        <FormGroup label="Image" value={metadata.image_url} image />
+      <div className="metatags">
+        <label>Meta tags</label>
+        <pre>
+          {JSON.stringify(metadata.metaTags, null, 2)}
+        </pre>
       </div>
     </div>);
   }

@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /.js?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        include: /src/,
         query: {presets: ['react']}
      }
     ]

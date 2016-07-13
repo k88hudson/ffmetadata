@@ -22,7 +22,7 @@
     "start:static": "cpx src/static/**/* data -w",
     "start:server": "live-server data --port=1936 --no-browser",
     "start": "npm-run-all --parallel start:*",
-    "addon": "npm run build && jpm run",
+    "addon": "jpm run",
     "sign": "npm run build && jpm sign --api-key ${AMO_API_KEY} --api-secret ${AMO_API_SECRET}"
   },
   "devDependencies": {
