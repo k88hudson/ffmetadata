@@ -2,6 +2,10 @@
 
 A test to use webpack in add-on code
 
+# Note
+
+As of Firefox 48.0, `jpm run` no longer works on stable, so you will need to download a copy of Firefox Nightly.
+
 ## Usage
 
 First, `npm install`. Then you must run two commands in separate processes:
