@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "ffmetadata",
+  "version": "0.0.3",
+  "description": "A simple Fathom devtools panel",
+  "devtools_page": "devtools-page.html",
+  "content_scripts": [
+    {"js": ["content-script.js"], "matches": ["<all_urls>"], "run_at": "document_idle"}
+  ],
+  "background": {
+    "scripts": ["background-page.js"]
+  },
+  "icons": {
+    "96": "icon.svg"
+  }
+}
