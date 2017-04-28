@@ -1,6 +1,6 @@
 lib/
-data/
+extension/
 node_modules/
 .DS_Store
-*.xpi
+web-ext-artifacts/
 *.log

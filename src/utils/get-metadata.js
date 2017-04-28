@@ -1,4 +1,3 @@
-const {Cc, Ci} = platform_require("chrome");
 const metadataparser = require("page-metadata-parser");
 const {resolve} = require("url");
 
@@ -9,9 +8,7 @@ const {resolve} = require("url");
 // });
 
 function getDocumentObject(data) {
-  const parser = Cc["@mozilla.org/xmlextras/domparser;1"]
-                .createInstance(Ci.nsIDOMParser);
-  // parser.init(null, data.documentURI, data.baseURI);
+  const parser = new DOMParser();
   return parser.parseFromString(data.fullText, "text/html");
 }
 

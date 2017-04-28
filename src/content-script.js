@@ -1,17 +1,20 @@
+const getMetadata = require("./utils/get-metadata.js");
 
 function getData() {
-  return {
+  return getMetadata({
     baseURI: document.baseURI,
     documentURI: document.documentURI,
     fullText: document.documentElement.innerHTML
-  };
+  });
 }
 
-self.port.on("message", e => {
-  console.log("content script received message");
-  console.log(e);
+browser.runtime.onMessage.addListener((actionType) => {
+  if (actionType === "GET_PAGE_DATA") {
+    return Promise.resolve(getData());
+  }
 });
 
-self.port.emit("message", {type: "PAGE_TEXT", data: getData()});
-
-console.log("content-script loaded");
+browser.runtime.sendMessage({
+  type: "PAGE_DATA_UPDATED",
+  pageData: getData(),
+});

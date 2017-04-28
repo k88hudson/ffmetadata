@@ -1,4 +1,3 @@
-const {CONTENT_TO_ADDON_EVENT} = require("./constants");
 const React = require("react");
 const ReactDOM = require("react-dom");
 
